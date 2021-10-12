@@ -7,13 +7,13 @@ from code import update
 PAGE_ACCESS_TOKEN = 'EAANKr7LqJe4BAA9MZCk2qMA9t0zZC6ziKu5TvgoJxTxqX7jPZAXLxBMPyjJvWBZBzVVxYgX0l76QqZA5mANJDQYylT9CqZA0ObZBKD1txbEmlZClzCaZBPDTl4u0HQaUjQ3KHPZBLx6t1kBelDhtfwP6Ljmt0nzEfaX5dqPqtZCAA3sTZBEVIsjS3fSr'
 # verify token
 VERIFY_TOKEN = 'token_cua_manh'
-
-class BotControl(web.View):
-     
-    async def get_message():
+def get_message():
       chet,nhiem,khoi,dang=update()
       sample_responses = "Số ca tử vong: "+ str(chet)+"\n"+"Số ca nhiễm: "+str(nhiem)+"\n"+"Số ca khỏi: "+str(khoi)+"\n"+"Số ca đang điều trị: "+str(dang)+"\n"
       return sample_responses 
+class BotControl(web.View):
+     
+   
     async def get(self):
         query = self.request.rel_url.query
         if(query.get('hub.mode') == "subscribe" and query.get("hub.challenge")):
