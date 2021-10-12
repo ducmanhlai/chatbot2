@@ -2,15 +2,18 @@ import json
 import aiohttp
 from os import environ
 from aiohttp import web
-
+from code import update
 # fanpage token
-
 PAGE_ACCESS_TOKEN = 'EAANKr7LqJe4BAA9MZCk2qMA9t0zZC6ziKu5TvgoJxTxqX7jPZAXLxBMPyjJvWBZBzVVxYgX0l76QqZA5mANJDQYylT9CqZA0ObZBKD1txbEmlZClzCaZBPDTl4u0HQaUjQ3KHPZBLx6t1kBelDhtfwP6Ljmt0nzEfaX5dqPqtZCAA3sTZBEVIsjS3fSr'
-
-VERIFY_TOKEN = "token_cua_manh"
+# verify token
+VERIFY_TOKEN = 'token_cua_manh'
 
 class BotControl(web.View):
-
+     
+    async def get_message():
+      chet,nhiem,khoi,dang=update()
+      sample_responses = "Số ca tử vong: "+ str(chet)+"\n"+"Số ca nhiễm: "+str(nhiem)+"\n"+"Số ca khỏi: "+str(khoi)+"\n"+"Số ca đang điều trị: "+str(dang)+"\n"
+      return sample_responses 
     async def get(self):
         query = self.request.rel_url.query
         if(query.get('hub.mode') == "subscribe" and query.get("hub.challenge")):
@@ -22,29 +25,15 @@ class BotControl(web.View):
     async def post(self):
         data = await self.request.json()
         if data.get("object") == "page":
-            await self.send_greeting("Chào bạn. Mình là bot demo của học python.")
+            await self.send_greeting("Chào bạn. Mình là bot của Mạnh Gút Boi")
 
             for entry in data.get("entry"):
                 for messaging_event in entry.get("messaging"):
                     if messaging_event.get("message"):
                         sender_id = messaging_event["sender"]["id"]
                         message_text = messaging_event["message"]["text"]
-
-                        if any(["chào" in message_text.lower(), "hi " in message_text.lower(),
-                                "hello" in message_text.lower(), "có ai" in message_text.lower(),
-                                "có ở đó" in message_text.lower(), "hi" == message_text.lower()]):
-                            await self.send_message(sender_id, "chào đằng ấy :)")
-                        elif any(["bạn tên" in message_text.lower(), "mày tên" in message_text.lower(),
-                                "your name" in message_text.lower(), "cậu tên" in message_text.lower()]):
-                            await self.send_message(sender_id, "mình tên là bot demo aiohttp nha")
-                        elif any(["tác giả" in message_text.lower(), "người viết" in message_text.lower(),
-                                "ai viết" in message_text.lower(), "ba mày" in message_text.lower(), "cha mày" in message_text.lower()
-                                     , "bố mày" in message_text.lower(), "tía mày" in message_text.lower()]):
-                            await self.send_message(sender_id, "ahihi bạn vào đây để xem ai là người tạo ra mình nha :3 https://www.hocpython.com")
-                        else:
-                            await self.send_message(sender_id, "Bạn dễ thương gì ấy ơi, ghé https://www.hocpython.com để ủng hộ ba mình nha :3 ")
-                            await self.send_message(sender_id,
-                                              "mình nghe ba mình nói nếu mình được 100 like sẽ chia sẻ với các bạn thêm tính năng mới của mình đó :3")
+                        await self.send_message(sender_id,get_message())
+                          
 
         return web.Response(text='ok', status=200)
 
@@ -84,8 +73,7 @@ class BotControl(web.View):
         async with aiohttp.ClientSession() as session:
             await session.post("https://graph.facebook.com/v3.0/me/messages", params=params, headers=headers, data=data)
 
-
-
+    
 routes = [
     web.get('/', BotControl, name='verify'),
     web.post('/', BotControl, name='webhook'),
