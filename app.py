@@ -16,6 +16,7 @@ def xuli(mes):
      a=get_message()
     else:
      a=sim(mes)
+    return a
 class BotControl(web.View):
      
    
