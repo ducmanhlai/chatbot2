@@ -2,7 +2,7 @@ import json
 import aiohttp
 from os import environ
 from aiohttp import web
-from code import update
+from code import update,sim
 # fanpage token
 PAGE_ACCESS_TOKEN = 'EAANKr7LqJe4BAA9MZCk2qMA9t0zZC6ziKu5TvgoJxTxqX7jPZAXLxBMPyjJvWBZBzVVxYgX0l76QqZA5mANJDQYylT9CqZA0ObZBKD1txbEmlZClzCaZBPDTl4u0HQaUjQ3KHPZBLx6t1kBelDhtfwP6Ljmt0nzEfaX5dqPqtZCAA3sTZBEVIsjS3fSr'
 # verify token
@@ -11,6 +11,11 @@ def get_message():
       chet,nhiem,khoi,dang=update()
       sample_responses = "Số ca tử vong: "+ str(chet)+"\n"+"Số ca nhiễm: "+str(nhiem)+"\n"+"Số ca khỏi: "+str(khoi)+"\n"+"Số ca đang điều trị: "+str(dang)+"\n"
       return sample_responses 
+def xuli(mes):
+    if any(["covid" in mes.lower,"corona" in mes.lower])
+     a=get_message()
+    else:
+     a=sim(mes)
 class BotControl(web.View):
      
    
@@ -31,8 +36,8 @@ class BotControl(web.View):
                 for messaging_event in entry.get("messaging"):
                     if messaging_event.get("message"):
                         sender_id = messaging_event["sender"]["id"]
-                        message_text = messaging_event["message"]["text"]
-                        await self.send_message(sender_id,get_message())
+                        
+                        await self.send_message(sender_id,xuli( messaging_event["message"]["text"]))
                           
 
         return web.Response(text='ok', status=200)
