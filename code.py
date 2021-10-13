@@ -11,4 +11,9 @@ def update():
   khoi=dt_json['total']['internal']["recovered"]
   dang=nhiem-chet-khoi
   return chet,nhiem,khoi,dang
-
+def sim(ms):
+    
+    re="https://api.simsimi.net/v2/?text="+ms+"&lc=vn"
+    dt=requests.get(re)
+    dt_json=dt.json()
+    return dt_json['success']
