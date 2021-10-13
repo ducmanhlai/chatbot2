@@ -12,7 +12,7 @@ def get_message():
       sample_responses = "Số ca tử vong: "+ str(chet)+"\n"+"Số ca nhiễm: "+str(nhiem)+"\n"+"Số ca khỏi: "+str(khoi)+"\n"+"Số ca đang điều trị: "+str(dang)+"\n"
       return sample_responses 
 def xuli(mes):
-    if "covid" in mes.lower or "corona" in mes.lower:
+    if "covid" in mes.lower() or "corona" in mes.lower():
      a=get_message()
     else:
      a=sim(mes)
