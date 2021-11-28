@@ -8,8 +8,8 @@ PAGE_ACCESS_TOKEN = 'EAANKr7LqJe4BAA9MZCk2qMA9t0zZC6ziKu5TvgoJxTxqX7jPZAXLxBMPyj
 # verify token
 VERIFY_TOKEN = 'token_cua_manh'
 def get_message():
-      chet,nhiem,khoi,dang=update()
-      sample_responses = "Số ca tử vong: "+ str(chet)+"\n"+"Số ca nhiễm: "+str(nhiem)+"\n"+"Số ca khỏi: "+str(khoi)+"\n"+"Số ca đang điều trị: "+str(dang)+"\n"
+      chet,nhiem,khoi,dang,hn=update()
+      sample_responses = "Số ca mắc hôm nay: "+str(hn)+"\n"+"Số ca tử vong: "+ str(chet)+"\n"+"Số ca nhiễm: "+str(nhiem)+"\n"+"Số ca khỏi: "+str(khoi)+"\n"+"Số ca đang điều trị: "+str(dang)+"\n"
       return sample_responses 
 def xuli(mes):
     if "covid" in mes.lower() or "corona" in mes.lower():
