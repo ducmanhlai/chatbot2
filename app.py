@@ -5,9 +5,9 @@ from aiohttp import web
 import os
 from code import update,sim
 # fanpage token
-PAGE_ACCESS_TOKEN = os.getevn('page_accsess_token')
+PAGE_ACCESS_TOKEN = os.getevn('ACCESS_TOKEN')
 # verify token
-VERIFY_TOKEN = 'token_cua_manh'
+VERIFY_TOKEN = os.getevn('VERIFY_TOKEN')
 def get_message():
       chet,nhiem,khoi,dang,hn=update()
       sample_responses = "Mắc mới trong ngày: "+str(hn)+"\n"+"Số ca tử vong: "+ str(chet)+"\n"+"Số ca nhiễm: "+str(nhiem)+"\n"+"Số ca khỏi: "+str(khoi)+"\n"+"Số ca đang điều trị: "+str(dang)+"\n"
