@@ -32,7 +32,7 @@ class BotControl(web.View):
     async def post(self):
         data = await self.request.json()
         if data.get("object") == "page":
-            await self.send_greeting("Chào bạn. Mình là bot của Mạnh Gút Boi")
+            await self.send_greeting("Chào bạn!")
 
             for entry in data.get("entry"):
                 for messaging_event in entry.get("messaging"):
