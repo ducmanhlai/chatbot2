@@ -44,13 +44,12 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
           cache: 'pip'
 
+      - name: Install dependencies
+        run: pip install -r requirements.txt
       - name: Create and start virtual environment
         run: |
           python -m app.py
           source venv/bin/activate
-
-      - name: Install dependencies
-        run: pip install -r requirements.txt
 
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
