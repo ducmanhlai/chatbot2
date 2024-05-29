@@ -8,8 +8,8 @@ from code import update,sim
 # PAGE_ACCESS_TOKEN = os.getenv('ACCESS_TOKEN')
 # verify token
 # VERIFY_TOKEN = os.getenv('VERIFY_TOKEN')
-PAGE_ACCESS_TOKEN = 'EAANKr7LqJe4BAIgsaD6EpvFeqEqal2YduEg6mVv8gZAVRMt7gHeDw9MfGGtYJ87M2lF7wGoGeOj8mrO30RHf3rWqS8RM2eJqv1BxfuZCnZAWd6r87lDdfey3GCFj0BWcyfmQvsPcEkf1iWq0vI3RjaOwFS7L1if3aSWB4ZC4Rh0bZAqSt644r'
-VERIFY_TOKEN = 'ChatBotMonHeThongPhanMem'
+PAGE_ACCESS_TOKEN = ''
+VERIFY_TOKEN = ''
 def get_message():
       chet,nhiem,khoi,dang,hn=update()
       sample_responses = "Mắc mới trong ngày: "+str(hn)+"\n"+"Số ca tử vong: "+ str(chet)+"\n"+"Số ca nhiễm: "+str(nhiem)+"\n"+"Số ca khỏi: "+str(khoi)+"\n"+"Số ca đang điều trị: "+str(dang)+"\n"
